@@ -1,0 +1,39 @@
+[ec2-user@ip-10-1-10-58 ~]$ clear
+[ec2-user@ip-10-1-10-58 ~]$ mysql -h mysqldb-primary.cqqvgvn723ig.us-east-1.rds.amazonaws.com -u admin -p udacity
+Enter password:
+ERROR 1045 (28000): Access denied for user 'admin'@'10.1.10.58' (using password: YES)
+[ec2-user@ip-10-1-10-58 ~]$ mysql -h mysqldb-primary.cqqvgvn723ig.us-east-1.rds.amazonaws.com -u admin -p udacity
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 392
+Server version: 8.0.28 Source distribution
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create table udacity_class(udacity_id INT NOT NULL AUTO_INCREMENT, name VARCHAR(100) NOT NULL, member VARCHAR(40) NOT NULL, PRIMARY KEY ( udacity_id ));
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> insert into  udacity_class(name, member) values ('Udacity AWS', '17');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into  tutorials (name, member) values ('Udacity Developer', '11');
+ERROR 1146 (42S02): Table 'udacity.tutorials' doesn't exist
+mysql> insert into  udacity_class(name, member) values ('Udacity Developer', '11');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from udacity_class;
++------------+-------------------+--------+
+| udacity_id | name              | member |
++------------+-------------------+--------+
+|          1 | Udacity AWS       | 17     |
+|          2 | Udacity Developer | 11     |
++------------+-------------------+--------+
+2 rows in set (0.00 sec)
+
+mysql>
